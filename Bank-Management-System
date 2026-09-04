@@ -1,0 +1,148 @@
+# Dictionary to store account details
+accounts = {}
+
+
+# ---------- Create Account ----------
+def create_account():
+    print("\n----- CREATE ACCOUNT -----")
+
+    account_no = input("Enter Account Number: ")
+
+    # Check if account already exists
+    if account_no in accounts:
+        print("Account already exists!")
+        return
+
+    name = input("Enter Account Holder Name: ")
+    initial_deposit = float(input("Enter Initial Deposit: "))
+
+    # Store account information
+    accounts[account_no] = {
+        "name": name,
+        "balance": initial_deposit
+    }
+
+    print("Account created successfully!")
+
+
+# ---------- Check Account ----------
+def check_account():
+    print("\n----- ACCOUNT DETAILS -----")
+
+    account_no = input("Enter Account Number: ")
+
+    if account_no not in accounts:
+        print("Account not found!")
+        return
+
+    account = accounts[account_no]
+
+    print("Account Number :", account_no)
+    print("Account Holder :", account["name"])
+    print("Balance        : ₹", account["balance"])
+
+
+# ---------- Deposit Money ----------
+def deposit_money():
+    print("\n----- DEPOSIT MONEY -----")
+
+    account_no = input("Enter Account Number: ")
+
+    if account_no not in accounts:
+        print("Account not found!")
+        return
+
+    amount = float(input("Enter Amount to Deposit: "))
+
+    if amount <= 0:
+        print("Enter a valid amount!")
+        return
+
+    accounts[account_no]["balance"] += amount
+
+    print("Money deposited successfully!")
+    print("Current Balance: ₹", accounts[account_no]["balance"])
+
+
+# ---------- Withdraw Money ----------
+def withdraw_money():
+    print("\n----- WITHDRAW MONEY -----")
+
+    account_no = input("Enter Account Number: ")
+
+    if account_no not in accounts:
+        print("Account not found!")
+        return
+
+    amount = float(input("Enter Amount to Withdraw: "))
+
+    if amount <= 0:
+        print("Enter a valid amount!")
+        return
+
+    # Check sufficient balance
+    if amount > accounts[account_no]["balance"]:
+        print("Insufficient balance!")
+        return
+
+    accounts[account_no]["balance"] -= amount
+
+    print("Money withdrawn successfully!")
+    print("Remaining Balance: ₹", accounts[account_no]["balance"])
+
+
+# ---------- Check Balance ----------
+def check_balance():
+    print("\n----- CHECK BALANCE -----")
+
+    account_no = input("Enter Account Number: ")
+
+    if account_no not in accounts:
+        print("Account not found!")
+        return
+
+    balance = accounts[account_no]["balance"]
+
+    print("Available Balance: ₹", balance)
+
+
+# ==========================================
+#              MAIN PROGRAM
+# ==========================================
+
+while True:
+
+    print("\n================================")
+    print("     BANK MANAGEMENT SYSTEM")
+    print("================================")
+    print("1. Create Account")
+    print("2. Check Account")
+    print("3. Deposit Money")
+    print("4. Withdraw Money")
+    print("5. Check Balance")
+    print("6. Exit")
+    print("================================")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        create_account()
+
+    elif choice == "2":
+        check_account()
+
+    elif choice == "3":
+        deposit_money()
+
+    elif choice == "4":
+        withdraw_money()
+
+    elif choice == "5":
+        check_balance()
+
+    elif choice == "6":
+        print("\nThank you for using Bank Management System!")
+        break
+
+    else:
+        print("Invalid choice! Please try again.")
