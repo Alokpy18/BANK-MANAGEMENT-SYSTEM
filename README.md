@@ -10,7 +10,6 @@ This project allows users to perform basic banking operations through a menu-dri
 * Withdraw money
 * Check account balance
 * View account details
-* Search account
 * Exit the system
 
 ## Technologies Used
